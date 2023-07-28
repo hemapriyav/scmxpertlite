@@ -1,0 +1,28 @@
+<html>
+    <title>Dashboard</title> <br>
+    <head> <link href="{{ url_for('static', path='/css/scm_style.css') }}" rel="stylesheet" />
+    <!-- <style>
+
+.topnav-right {
+  float: right;
+}
+    
+        </style> -->
+        </head>
+    <body >
+
+        <div class="topnav-right">
+           
+            <label style="font-size: large;"> <a href="/logout">Logout</a> </label>
+          </div>
+          <h1 class="display-5" style="text-align: center;color: darkmagenta;"> Welcome {{userName}}</h1>
+          <h3 class="display-5" style="text-align: center;color: rgb(83, 0, 139);"> Your Shipments</h1>
+           <form>
+            <h3 class="display-5" style="text-align: center;color: rgb(83, 0, 139);"> Your Shipments</h1>
+    {% for shpment in shipment %}
+    <div class="text sign-up-text"> <label style="display: block; text-align: center;font-size: x-large; background-color: antiquewhite;"> <a  href="/datastream/{{shpment['shipNum']}}" style="color: green;"> {{shpment['shipNum']}}</a></label></div>
+    {% endfor %}
+    <div class="text sign-up-text" style="padding: 30px;"> <label style="display: block; text-align: center;font-size: x-large; background-color: aqua;"> <a  href="/shipment" style="color: rgb(128, 0, 38);">Click here to Create New Shipment</a></label></div>
+  </form>
+</body>
+</html>
