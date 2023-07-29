@@ -16,9 +16,11 @@
             <label style="font-size: large;"> <a href="/logout">Logout</a> </label>
           </div>
           <h1 class="display-5" style="text-align: center;color: darkmagenta;"> Welcome {{userName}}</h1>
-          <h3 class="display-5" style="text-align: center;color: rgb(83, 0, 139);"> Your Shipments</h1>
+          
            <form>
+            {% if shipment|length > 0 %}
             <h3 class="display-5" style="text-align: center;color: rgb(83, 0, 139);"> Your Shipments</h1>
+              {% endif %}
     {% for shpment in shipment %}
     <div class="text sign-up-text"> <label style="display: block; text-align: center;font-size: x-large; background-color: antiquewhite;"> <a  href="/datastream/{{shpment['shipNum']}}" style="color: green;"> {{shpment['shipNum']}}</a></label></div>
     {% endfor %}

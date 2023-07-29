@@ -50,7 +50,11 @@ loginUser = None
 
 
  
+@app.get("/")
 
+def read_root(request: Request):
+
+    return templates.TemplateResponse("/login.html",{"request": request})
 
 @app.get("/register/")
 def register(request: Request):
@@ -144,7 +148,12 @@ def register(request: Request):
 @app.get("/forgotPassword")
 def register(request: Request):
 
-    return templates.TemplateResponse("/forgotPassword.html",{"request": request})  
+    return templates.TemplateResponse("/forgotPassword.html",{"request": request}) 
+
+@app.get("/shpcreated")
+def register(request: Request):
+
+    return templates.TemplateResponse("/shpcreated.html",{"request": request})  
 
 @app.post("/forgotPassword")
 def sendEmail(request: Request,email: str = Form(...)):
@@ -173,8 +182,8 @@ def register(request: Request,username: str = Form(...), email: str = Form(...),
     errors: list =  credential_valid(username,email,password)
     print(errors)
     if len(errors) > 0 :
-        print("inside not error")
-        return templates.TemplateResponse("/register.html",{"request": request, "errors": errors})
+        print("inside error")
+        return templates.TemplateResponse("/register.html",{"request": request, "errors": errors,"username": username,"email": email,"password": password})
     print("before getting users from db")
     users = users_serializer(collection_name.find())
     print("users - "+ str(users))
@@ -182,7 +191,7 @@ def register(request: Request,username: str = Form(...), email: str = Form(...),
         print(user)
         if user['email'] == email:
                 # raise HTTPException(status_code=404, detail="user already exists", headers= {"X-Error": "there is an error"},)
-                 return templates.TemplateResponse("/register.html",{"request": request,"errors": ["User already exists"]})  
+                 return templates.TemplateResponse("/register.html",{"request": request,"errors": ["User already exists"],"username": username,"email": email,"password": password})  
     print("before create user call")
     usr =create_user(User(name= username, email= email, password= password,role= "User"))
     print(usr)
@@ -203,7 +212,7 @@ def login(response: Response, request: Request, email: str = Form(...), password
     if error is not None:
             errors = []
             errors.append(error)
-            return templates.TemplateResponse("/login.html",{"request": request, "errors": errors})  
+            return templates.TemplateResponse("/login.html",{"request": request, "errors": errors,"email": email,"password": password})  
     users = users_serializer(collection_name.find())
 
     for user in users:
@@ -237,7 +246,7 @@ def login(response: Response, request: Request, email: str = Form(...), password
 
             #return signJWT(email)
     errors=["invalid email or password"]       
-    return templates.TemplateResponse("/login.html",{"request": request, "errors": errors})  
+    return templates.TemplateResponse("/login.html",{"request": request, "errors": errors,"email": email,"password": password})  
 
 @app.post("/shipment")
 async def create_shipment(request: Request):
@@ -276,10 +285,12 @@ async def create_shipment(request: Request):
         shipDesc= shipment['shipDesc'],
         userId= loginUser['id']
        ))
+    print(shipmentNew[0]["shipNum"])
+    return templates.TemplateResponse("/shpcreated.html",{"request": request,"shipNum": shipmentNew[0]["shipNum"]})
 
 def get_shipment():
      global loginUser
-     if(loginUser["role"] == "Admin"):
+     if(loginUser["role"] == "admin"):
          shipments = shipments_serializer(collection_name2.find())
      else:    
         shipments = shipments_serializer(collection_name2.find({"userId": loginUser['id']}))
@@ -356,11 +367,11 @@ def generate_auth_email(passcode: str,RECEIVER_EMAIL: str):
         print("before send mail-"+str(text))
         server.sendmail(sender_email, receiver_email, text)
     print("end of generate auth email")
-@app.get("/")
+# @app.get("/")
 
-def read_root():
+# def read_root():
 
-    return {"Hello": "World"}
+#     return templates.TemplateResponse("/login.html",{"request": request})
 
 
 

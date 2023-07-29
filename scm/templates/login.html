@@ -67,11 +67,11 @@ body {
       </div>
         <div class="mb-3">
           <label>Email</label>
-          <input type="text" required placeholder="email" name="email" value="{{email}}" class="form-control">
+          <input type="text" required  id="email" name="email" value="{{email}}" class="form-control">
         </div>
         <div class="mb-3">
           <label>Password</label>
-          <input type="password" required placeholder="password" value="{{password}}" name="password" class="form-control">
+          <input type="password" required  id="password" value="{{password}}" name="password" class="form-control">
         </div>
 
         
@@ -82,6 +82,7 @@ body {
         <div class="form-group col-md-6">
           <label>Enter Captcha:</label>
           <input type="text" class="form-control" id="textinput">
+          <label id="captValidate"></label>
         </div>
       </div>
 
@@ -121,14 +122,17 @@ body {
 
       }
       function validcap(){
-                var stg1 = document.getElementById('capt').value;
+                var stg1 = document.getElementById('capt').innerText;
                 var stg2 = document.getElementById('textinput').value;
                 if(stg1==stg2){
-                  alert("Form is validated Succesfully");
+                  // alert("Form is validated Succesfully");
                   return true;
                 }else{
-                  alert("Please enter a valid captcha");
+                  // alert("Please enter a valid captcha");
+                  document.getElementById("captValidate").innerText="Captcha not valid";
+                  event.preventDefault();
                   return false;
+
                 }
                }
     </script>
