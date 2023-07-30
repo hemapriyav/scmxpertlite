@@ -1,7 +1,24 @@
 <html>
     <title>Shipment Created</title> <br>
-    Shipment created successfully. Shipment Number - {{shipNum}}
+    <head>
+        <link href="{{ url_for('static', path='/css/scm_style.css') }}" rel="stylesheet" />
+    </head>
+    <body class="stylebody">
+        <div class="container">
+            <div class="row">
+              <div style="float: left;">
+                <img src="{{ url_for('static', path='/img/exf_logo.png') }}" width= "30" style="background-color: white;">
+               
+              </div>
+              <h1 class="display-5" style="text-align: center;color: rgb(67, 161, 223);"><span style="background-color: white ;">SCMXpertlite</span></h1>
+        
+              
+            </div>
+        <form method="POST" class ="styleform">
+            <label style="display: block; text-align: center;margin-bottom: 10px;font-size: x-large;color: darkmagenta">Shipment created successfully. Shipment Number - {{shipNum}} </label>
     
-    <div class="text sign-up-text"> <label> <a  href="/dashboard" style="color: green;"> OK </a></label></div>
-    
+    <div class="text sign-up-text"> <label style="font-size: large;"> <a  href="/dashboard" style="color: green;" class="button"> OK </a></label></div>
+        </form>
+            
+        </body>
 </html>

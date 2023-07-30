@@ -106,7 +106,7 @@ def register(request: Request,shipNum:int):
     deviceData = device_datas_serializer(collection_name3.find({"Device_ID": int(shipment[0]['device'])}))
     for data in deviceData:
         print(data)
-    return templates.TemplateResponse("/datastream.html",{"request": request, "deviceData": deviceData,"shipment":shipment}) 
+    return templates.TemplateResponse("/datastream.html",{"request": request, "deviceData": deviceData,"shipment":shipment[0]}) 
 
     return      
 
@@ -142,18 +142,57 @@ def register(request: Request):
         return templates.TemplateResponse("/logout.html",{"request": request,"message":"Session Expired"}) 
     # if(decodedUser['login']):
     #      return templates.TemplateResponse("/login.html",{"request": request})
-    shipments = get_shipment()
-    return templates.TemplateResponse("/dashboard.html",{"request": request, "userName": loginUser['name'], "shipment": shipments})  
-
+    shipments = get_shipment() 
+    print(loginUser)
+    # return templates.TemplateResponse("/dashboard.html",{"request": request, "userName": loginUser['name'], "shipment": shipments})  
+    return templates.TemplateResponse("/dashboard.html",{"request": request, "user": loginUser, "shipment": shipments})  
+ 
 @app.get("/forgotPassword")
 def register(request: Request):
+        global loginUser
+        if loginUser is None:
+             return templates.TemplateResponse("/logout.html",{"request": request, "message":"Please Login to continue"}) 
+        decodedUser =decodeJWT(request,"token")
+        print("decodedUser-"+str(decodedUser))
+        if(decodedUser is None):
+            return templates.TemplateResponse("/logout.html",{"request": request,"message":"Session Expired"}) 
 
-    return templates.TemplateResponse("/forgotPassword.html",{"request": request}) 
+        return templates.TemplateResponse("/forgotPassword.html",{"request": request}) 
 
 @app.get("/shpcreated")
 def register(request: Request):
 
-    return templates.TemplateResponse("/shpcreated.html",{"request": request})  
+    return templates.TemplateResponse("/shpcreated.html",{"request": request}) 
+
+@app.get("/changepassword")
+def register(request: Request):
+        global loginUser
+        if loginUser is None:
+             return templates.TemplateResponse("/logout.html",{"request": request, "message":"Please Login to continue"}) 
+        decodedUser =decodeJWT(request,"token")
+        print("decodedUser-"+str(decodedUser))
+        if(decodedUser is None):
+            return templates.TemplateResponse("/logout.html",{"request": request,"message":"Session Expired"}) 
+        return templates.TemplateResponse("/changepassword.html",{"request": request})  
+
+@app.post("/changepassword")
+def register(request: Request,currentpwd: str = Form(...),newpwd:str = Form(...)):
+        global loginUser
+        if loginUser is None:
+             return templates.TemplateResponse("/logout.html",{"request": request, "message":"Please Login to continue"}) 
+        decodedUser =decodeJWT(request,"token")
+        print("decodedUser-"+str(decodedUser))
+        if(decodedUser is None):
+            return templates.TemplateResponse("/logout.html",{"request": request,"message":"Session Expired"}) 
+        if(currentpwd == loginUser['password']):
+            if not (currentpwd == newpwd):
+                collection_name.find_one_and_update( { 'email': loginUser['email']}, { '$set': { 'password': newpwd}})
+            else:
+                return templates.TemplateResponse("/changepassword.html",{"request": request, "error": "New Password cannot be same as current password","currentpwd": currentpwd, "newpwd":newpwd})
+        else:
+             return templates.TemplateResponse("/changepassword.html",{"request": request, "error": "invalid current password","currentpwd": currentpwd, "newpwd":newpwd})
+
+        return templates.TemplateResponse("/changepassword.html",{"request": request,"message": "Password changed Successfully"})  
 
 @app.post("/forgotPassword")
 def sendEmail(request: Request,email: str = Form(...)):
@@ -174,7 +213,7 @@ def sendEmail(request: Request,email: str = Form(...)):
     generate_auth_email(password,email)
     # collection_name.updateOne( { title: "Post Title 1" }, { $set: { likes:  } } ) 
     collection_name.find_one_and_update( { 'email': email}, { '$set': { 'password': password} } ) 
-    return templates.TemplateResponse("/logout.html",{"request": request,"message":"Password sent successfully.Please change the password after login"}) 
+    return templates.TemplateResponse("/logout.html",{"request": request,"message":"Password sent successfully to the email id.Please change the password after login"}) 
 
 
 @app.post("/register/")
@@ -239,7 +278,7 @@ def login(response: Response, request: Request, email: str = Form(...), password
             # shipments = shipments_serializer(collection_name2.find({"userId": user['id']}))
             shipments = get_shipment()
             print(shipments)
-            response = templates.TemplateResponse("/dashboard.html",{"request": request, "userName": user['name'], "shipment": shipments})  
+            response = templates.TemplateResponse("/dashboard.html",{"request": request, "user": loginUser, "shipment": shipments})  
             response.set_cookie(key="access_token", value = token, httponly=True)
             return response
             #return templates.TemplateResponse("/dashboard.html",{"request": request, "response": response,"userName": user['name'], "shipment": shipments})  

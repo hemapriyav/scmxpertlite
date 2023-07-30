@@ -9,22 +9,43 @@
     
         </style> -->
         </head>
-    <body >
+    <body class="stylebody">
 
         <div class="topnav-right">
-           
-            <label style="font-size: large;"> <a href="/logout">Logout</a> </label>
+          <a href="/changepassword">ChangePassword</a>
+            <a href="/logout">Logout</a> 
           </div>
-          <h1 class="display-5" style="text-align: center;color: darkmagenta;"> Welcome {{userName}}</h1>
-          
-           <form>
+          <div class="container"></div>
+        <div class="row" style="float: left">
+
+          <img src="{{ url_for('static', path='/img/exf_logo.png') }}" style="background-color: white;" width= "30">
+</div>
+          <h1 class="display-5" style="text-align: center;color: rgb(67, 161, 223);"><span style="background-color: white ;">SCMXpertlite</span></h1>
+          <!-- <div class="container">
+            <div class="row">
+            <img src="{{ url_for('static', path='/img/exf_logo.png') }}" style="background-color: white;" width= "30">
+           <h1 class="display-5" style="text-align: center;color: blue;"> <span style="background-color: white;">Welcome {{userName}}</span></h1>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div> -->
+          <div class="row my-5">
+          <form class="styleform">
+            <h1 class="display-5" style="text-align: center;color: blue;"> <span>Welcome {{user['name']}}</span></h1>
+            <h3 class="display-5" style="text-align: center;color: rgb(2, 150, 63);"> Email - {{user['email']}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Role - {{user['role']}}</h3>
             {% if shipment|length > 0 %}
-            <h3 class="display-5" style="text-align: center;color: rgb(83, 0, 139);"> Your Shipments</h1>
-              {% endif %}
+            <h3 class="display-5" style="text-align: center;color: rgb(139, 0, 93);"> Shipments</h3>
+              
     {% for shpment in shipment %}
     <div class="text sign-up-text"> <label style="display: block; text-align: center;font-size: x-large; background-color: antiquewhite;"> <a  href="/datastream/{{shpment['shipNum']}}" style="color: green;"> {{shpment['shipNum']}}</a></label></div>
     {% endfor %}
-    <div class="text sign-up-text" style="padding: 30px;"> <label style="display: block; text-align: center;font-size: x-large; background-color: aqua;"> <a  href="/shipment" style="color: rgb(128, 0, 38);">Click here to Create New Shipment</a></label></div>
+    {% else %}
+    <h3 class="display-5" style="text-align: center;color: rgb(139, 0, 93);"> No Shipments Created</h3>
+
+    {% endif %}
+    <div class="text sign-up-text" style="padding: 30px;"> <label style="display: block; text-align: center;font-size:large; background-color: aqua;"> <a  href="/shipment" style="color: rgb(128, 0, 38);">Click here to Create New Shipment</a></label></div>
   </form>
+</div>
 </body>
 </html>

@@ -13,7 +13,7 @@ def credential_valid(username:str,email:str,password:str) -> list:
         if not (re.fullmatch(regex, email)):
             errors.append("Not a valid email")
         if not password or not len(password) >= 5:
-            errors.append("Password must be > 4 chars")
+            errors.append("Password must be minimum 5 chars")
         # if not errors:
         #     return errors
         return errors

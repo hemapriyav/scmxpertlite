@@ -43,34 +43,47 @@ body {
   </style>  -->
   </head>
 
-<body onload="createCaptcha()"> 
+<body onload="createCaptcha()" class="stylebody"> 
 
   <div class="container">
     <div class="row">
-      <img src="{{ url_for('static', path='/img/exf_logo.png') }}" style="background-color: white;" width= "50">
-      <h1 class="display-5" style=" text-align: center;color: rgb(223, 90, 67);">Welcome to SCMXpertlite</h1>
-      <span style="background-color: white;">Welcome to SCMXpertlite</span>
+      <div style="float: left;">
+        <img src="{{ url_for('static', path='/img/exf_logo.png') }}" width= "30" style="background-color: white;">
+       
       </div>
+      <h1 class="display-5" style="text-align: center;color: rgb(67, 161, 223);"><span style="background-color: white ;">SCMXpertlite</span></h1>
+
       
     </div>
 
+
+
+
+  <!-- <div class="container">
+    <div class="row">
+      <img src="{{ url_for('static', path='/img/exf_logo.png') }}" style="background-color: white;" width= "50">
+      <h1 class="display-5" style=" text-align: center;color: blue;"><span style="background-color: white ;">Welcome to SCMXpertlite</span></h1>
+      </div>
+      
+    </div> -->
+
     <div class="row my-5">
-      <form method="POST">
+      <form method="POST" class="styleform">
         <div class="mb-3">
           <label style="display: block; text-align: center;margin-bottom: 10px;font-size: x-large;">Login</label>
                <!-- <h4 class="display-5" style="text-align: center;">Login</h4> -->
         </div>
-        <div class="text-danger font-weight-bold">
+        <div class="text-danger font-weight-bold" style="color: red; text-align: center;">
           {% for error in errors %}
             <li>{{error}}</li>
           {% endfor %}
       </div>
         <div class="mb-3">
-          <label>Email</label>
+          <label>Email<span class="required-field"></span></label>
           <input type="text" required  id="email" name="email" value="{{email}}" class="form-control">
         </div>
         <div class="mb-3">
-          <label>Password</label>
+          <label>Password<span class="required-field"></span></label>
           <input type="password" required  id="password" value="{{password}}" name="password" class="form-control">
         </div>
 
@@ -80,13 +93,13 @@ body {
           <label id="capt" style=" font-size:larger; color: white; background-color:rgb(82, 39, 4);margin-bottom: 15px;"></label>
         </div>
         <div class="form-group col-md-6">
-          <label>Enter Captcha:</label>
+          <label>Enter Captcha<span class="required-field"></span></label>
           <input type="text" class="form-control" id="textinput">
           <label id="captValidate"></label>
         </div>
       </div>
 
-        <button type="submit" class="btn btn-primary" onclick="validcap()">Login</button>
+        <button type="submit" class="button" onclick="validcap()">Login</button>
         <h4>Captcha not visible <img src="{{ url_for('static', path='/img/refresh.png') }}" width= "20" onclick="createCaptcha()"></h4>
         <div class="form-group">
          Forgot Password? <a href="/forgotPassword">Click here</a>
