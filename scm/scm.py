@@ -1,21 +1,14 @@
-from typing import Union
+
 
 from fastapi import FastAPI, HTTPException
-
 from fastapi.templating import Jinja2Templates  
-
 from fastapi import APIRouter
-
-from fastapi import Request, Response, Form, Body
-
+from fastapi import Request, Response, Form
 from fastapi.staticfiles import StaticFiles
 
-from fastapi.responses import HTMLResponse
-
 import time
-from typing import Dict
-import jwt
 from datetime import date,timedelta
+import jwt
 import random,string
 
 from validation import credential_valid,email_valid
@@ -66,7 +59,6 @@ def register_post(request: Request,username: str = Form(...), email: str = Form(
         for user in users:
             print(user)
             if user['email'] == email:
-                    # raise HTTPException(status_code=404, detail="user already exists")
                     return templates.TemplateResponse(REGISTER_PAGE,{"request": request,"errors": ["User already exists"],"username": username,"email": email,"password": password})  
         print("before create user call")
         usr =create_user(User(name= username, email= email, password= password,role= "User"))
@@ -320,8 +312,6 @@ def create_shipment(shipment: Shipment):
     except Exception as error:
          raise HTTPException(status_code=404, detail= str(error))
          
-
-# function used for signing the JWT string
 def sign_jwt(user_id: str) -> str:
     try:
         payload = {
@@ -378,7 +368,6 @@ def generate_auth_email(passcode: str,receiver_mail: str):
             print("before send mail-"+str(text))
             server.sendmail(sender_email, receiver_email, text)
         print("end of generate auth email")
-
     except Exception as error:
          raise HTTPException(status_code=404, detail= str(error))
          

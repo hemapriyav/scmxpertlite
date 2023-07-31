@@ -1,158 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
-    
-     <head> 
-      <title> >DataStream </title>
-      <meta content="text/html; charset=utf-8" />
-        <link href="{{ url_for('static', path='/css/scm_style.css') }}" rel="stylesheet" />
-         <style>
-            .topnav-right {
-  float: right;
-} 
+  <head>
+    <title>>DataStream</title>
+    <meta content="text/html; charset=utf-8" />
+    <link
+      href="{{ url_for('static', path='/css/scm_style.css') }}"
+      rel="stylesheet"
+    />
+    <style>
+      .topnav-right {
+        float: right;
+      }
 
-form{
-  margin-top: 30px;
-  margin-left: 70px;
-  display: inline-block;
-  background-color: #d9f2fa;
-  background-image: url("/static/img/blue_bubble.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-  padding: 50px;
-  border:5px solid white;
-  text-align: center;
-  align-content: center;
-  width:80%;
-  height: auto;
+      form {
+        margin-top: 30px;
+        margin-left: 70px;
+        display: inline-block;
+        background-color: #d9f2fa;
+        background-image: url("/static/img/blue_bubble.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 50px;
+        border: 5px solid white;
+        text-align: center;
+        align-content: center;
+        width: 80%;
+        height: auto;
+      }
+      .topnav-right {
+        float: right;
+      }
+    </style>
+  </head>
+  <body class="stylebody">
+    <!-- <body> -->
+    <div class="topnav-right">
+      <a href="/dashboard">Home</a>
+      <a href="/logout">Logout</a>
+    </div>
+    <div class="container"></div>
+    <div class="row" style="float: left">
+      <img
+        src="{{ url_for('static', path='/img/exf_logo.png') }}"
+        alt="exf logo"
+        style="background-color: white"
+        width="30"
+      />
+    </div>
+    <h1 class="display-5" style="text-align: center; color: rgb(67, 161, 223)">
+      <span style="background-color: white">SCMXpertlite</span>
+    </h1>
 
-}
-.topnav-right {
-  float: right;
-}
+    <form class="form-control form-control-lg">
+      <h1 class="display-5" style="text-align: center; color: darkmagenta">
+        <span>DataStream</span>
+      </h1>
 
-            </style> 
-    </head>
-    <body class="stylebody">
-      <!-- <body> -->
-        <div class="topnav-right">
-            <a href="/dashboard">Home</a>
-            <a href="/logout">Logout</a>
-          </div>
-          <div class="container"></div>
-        <div class="row" style="float: left">
-
-          <img src="{{ url_for('static', path='/img/exf_logo.png') }}" alt="exf logo" style="background-color: white;" width= "30">
-</div>
-          <h1 class="display-5" style="text-align: center;color: rgb(67, 161, 223);"><span style="background-color: white ;">SCMXpertlite</span></h1>
-
-          <form class="form-control form-control-lg">
-            <h1 class="display-5" style=" text-align: center;color: darkmagenta;"><span>DataStream</span></h1>
-
-        
-       </div>
-       <div>
-        
-        <table class="detl" style=" margin-left:auto; margin-right:auto; border: 1px solid black;">
-          <col style="width: 50%;" />
-          <col style="width: 50%;" />
+      <div>
+        <table
+          class="detl"
+          style="margin-left: auto; margin-right: auto; border: 1px solid black"
+        >
+          <col style="width: 50%" />
+          <col style="width: 50%" />
           <tr>
             <td>
-          <div style="float:left;">
-            <label id="shipNum">Shipment Number - {{shipment['shipNum']}}</label>
-          </div>
-          </td>
-          <td>
-          <div style="float:left;">
-            <label id="contNum">Container Number - {{shipment['contNum']}}</label>           
-          </div>
-          
-        </td></tr>
-        <tr>
-          <td>
-          <div style="float:left;">
-            <label id="routeDtl">Route - {{shipment['route']}}</label>
-          </div>
-          </td>
-          <td>
-          <div style="float:left;">
-            <label id="goodsType">Goods Type - {{shipment['goodsType']}}</label>
-          </div>
-        </td></tr>
-        <tr>
-          <td>
-          <div style="float:left;">
-            <label id="expDel">Exp Del Date - {{shipment['delDate']}}</label>            
-          </div>
-         </td>
-        <td>
-          <div style="float:left;">
-            <label id="device">Device - {{shipment['device']}}</label>
-          </div>
-          </td>
-          
+              <div style="float: left">
+                <label id="shipNum"
+                  >Shipment Number - {{shipment['shipNum']}}</label
+                >
+              </div>
+            </td>
+            <td>
+              <div style="float: left">
+                <label id="contNum"
+                  >Container Number - {{shipment['contNum']}}</label
+                >
+              </div>
+            </td>
           </tr>
           <tr>
-           
-         <td>
-          <div style="float:left;">
-            <label id="ndcNum">NDC Number-{{shipment['ndcNum']}}</label>
-          </div>
-          </td>
-          <td>
-          <div style="float:left;">
-            <label id="batchId">Batch Id - {{shipment['batchId']}}</label>
-          </div>
-</td>
-<tr>
-<td>
-          <div style="float:left;">
-            <label id="serialNum">SNo. of Goods - {{shipment['serialNum']}}</label>
-          </div>
-          </td>
-          <td>
-          <div style="float:left;">
-            <label id="poNum">PO Number - {{shipment['poNum']}}</label>
-          </div>
-          </td>
+            <td>
+              <div style="float: left">
+                <label id="routeDtl">Route - {{shipment['route']}}</label>
+              </div>
+            </td>
+            <td>
+              <div style="float: left">
+                <label id="goodsType"
+                  >Goods Type - {{shipment['goodsType']}}</label
+                >
+              </div>
+            </td>
           </tr>
           <tr>
-          <td>
-          <div style="float:left;">
-            <label id="delNum">Delivery Number - {{shipment['delNum']}}</label>
-          </div>
-          </td>
-        </tr>
-      </table>
-          <div style="clear:both;">&nbsp;&nbsp;&nbsp;&nbsp;</div>
-       <!-- data stream-->
-       {% if(deviceData|length > 0)%}
-       <div>
-        <table class="data" style="width:100%";>
+            <td>
+              <div style="float: left">
+                <label id="expDel"
+                  >Exp Del Date - {{shipment['delDate']}}</label
+                >
+              </div>
+            </td>
+            <td>
+              <div style="float: left">
+                <label id="device">Device - {{shipment['device']}}</label>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div style="float: left">
+                <label id="ndcNum">NDC Number-{{shipment['ndcNum']}}</label>
+              </div>
+            </td>
+            <td>
+              <div style="float: left">
+                <label id="batchId">Batch Id - {{shipment['batchId']}}</label>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div style="float: left">
+                <label id="serialNum"
+                  >SNo. of Goods - {{shipment['serialNum']}}</label
+                >
+              </div>
+            </td>
+            <td>
+              <div style="float: left">
+                <label id="poNum">PO Number - {{shipment['poNum']}}</label>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div style="float: left">
+                <label id="delNum"
+                  >Delivery Number - {{shipment['delNum']}}</label
+                >
+              </div>
+            </td>
+          </tr>
+        </table>
+        <div style="clear: both">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        <!-- data stream-->
+        {% if(deviceData|length > 0)%}
+        <div>
+          <table class="data" style="width: 100%" ;>
             <tr>
-                <th class="data">Device Id</th>
-                <th class="data">Battery Level</th>
-                <th class="data">First Sensor temperature</th>
-                <th class="data">Route From</th>
-                <th class="data">Route To</th>
+              <th class="data">Device Id</th>
+              <th class="data">Battery Level</th>
+              <th class="data">First Sensor temperature</th>
+              <th class="data">Route From</th>
+              <th class="data">Route To</th>
             </tr>
             {% for data in deviceData %}
             <tr>
-                <td class="data">{{data['Device_ID']}} </td>
-                <td class="data">{{data['Battery_Level']}}</td>
-                <td class="data">{{data['First_Sensor_Temperature']}}</td>
-                <td class="data">{{data['Route_From']}}</td>
-                <td class="data">{{data['Route_To']}}</td>
-
+              <td class="data">{{data['Device_ID']}}</td>
+              <td class="data">{{data['Battery_Level']}}</td>
+              <td class="data">{{data['First_Sensor_Temperature']}}</td>
+              <td class="data">{{data['Route_From']}}</td>
+              <td class="data">{{data['Route_To']}}</td>
             </tr>
             {% endfor %}
-            
           </table>
           {%else%}
-            <label style="display: block; text-align: center;font-size:large; color: blue;">No data available</label>
+          <label
+            style="
+              display: block;
+              text-align: center;
+              font-size: large;
+              color: blue;
+            "
+            >No data available</label
+          >
           {%endif%}
-          <div class="text sign-up-text"> <label style="font-size: large;"> <a  href="/dashboard" style="color: white;" class="button"> OK </a></label></div>
+          <div class="text sign-up-text">
+            <label style="font-size: large">
+              <a href="/dashboard" style="color: white" class="button">
+                OK
+              </a></label
+            >
+          </div>
 
           <!-- data stream-->
-        </form>
-    </body>
+        </div>
+      </div>
+    </form>
+  </body>
 </html>

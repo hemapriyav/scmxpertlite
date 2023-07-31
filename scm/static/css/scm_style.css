@@ -1,54 +1,55 @@
-.styleform{
-    width: 25%;
-    padding: 50px;
-    /* border-radius: 10px; */
-    border:5px solid white;
-    
-    background-image: url("/static/img/blue_bubble.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: absolute;
-    left: 37%;
-    top: 20%;
-    text-align: center;
+.styleform {
+  width: 25%;
+  padding: 50px;
+  border: 5px solid white;
+  background-image: url("/static/img/blue_bubble.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  left: 37%;
+  top: 20%;
+  text-align: center;
 }
+
 .required-field::after {
-    content: "*";
-    color: red;
-} 
+  content: "*";
+  color: red;
+}
+
 .button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-input { margin-bottom: 10px; 
-margin-left: 15px;
-      }
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+input {
+  margin-bottom: 10px;
+  margin-left: 15px;
+}
 
 .stylebody {
-background-image: url("/static/img/scm_image.jpg");
-
-background-repeat: no-repeat;
-background-attachment: fixed;
-background-size: cover;
+  background-image: url("/static/img/scm_image.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .topnav-right {
-    float: right;
-  }
-  .data  {
-    border: 1px solid black;
-    align-content: center;
-} 
-
-.detl td{
-  padding-right: 50px;
+  float: right;
 }
 
+.data {
+  border: 1px solid black;
+  align-content: center;
+}
+
+.detl td {
+  padding-right: 50px;
+}
