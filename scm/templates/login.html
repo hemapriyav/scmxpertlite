@@ -1,46 +1,10 @@
 
-<html>
-
-  <title>Login </title>
-  <head> 
+<!DOCTYPE html>
+<html lang="en">
+   <head> 
+    <title>Login </title>
+    <meta content="text/html; charset=utf-8" />
     <link href="{{ url_for('static', path='/css/scm_style.css') }}" rel="stylesheet" />
-  <!-- <style>
-   
-     form{
-      width: 25%;
-      padding: 50px;
-      border-radius: 10px;
-      background-color: #d9f2fa;
- 
-      position: absolute;
-      left: 37%;
-      top: 20%;
-      text-align: center;
-}
-input { margin-bottom: 10px; 
-  margin-left: 15px;
-        }
-.captcha{
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 100%;
-  color: #fff; 
-  font-size: 35px;
-  text-align: center;
-  letter-spacing: 10px;
-  transform: translate(-50%, -50%);
-  text-shadow: 0px 0px 2px #b1b1b1;
-  font-family: 'Noto Serif', serif;
-}
-body {
-
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-}
-
-  </style>  -->
   </head>
 
 <body onload="createCaptcha()" class="stylebody"> 
@@ -48,7 +12,7 @@ body {
   <div class="container">
     <div class="row">
       <div style="float: left;">
-        <img src="{{ url_for('static', path='/img/exf_logo.png') }}" width= "30" style="background-color: white;">
+        <img src="{{ url_for('static', path='/img/exf_logo.png') }}" width= "30" alt = "exf logo" style="background-color: white;">
        
       </div>
       <h1 class="display-5" style="text-align: center;color: rgb(67, 161, 223);"><span style="background-color: white ;">SCMXpertlite</span></h1>
@@ -57,26 +21,18 @@ body {
     </div>
 
 
-
-
-  <!-- <div class="container">
-    <div class="row">
-      <img src="{{ url_for('static', path='/img/exf_logo.png') }}" style="background-color: white;" width= "50">
-      <h1 class="display-5" style=" text-align: center;color: blue;"><span style="background-color: white ;">Welcome to SCMXpertlite</span></h1>
-      </div>
-      
-    </div> -->
-
     <div class="row my-5">
       <form method="POST" class="styleform">
         <div class="mb-3">
           <label style="display: block; text-align: center;margin-bottom: 10px;font-size: x-large;">Login</label>
-               <!-- <h4 class="display-5" style="text-align: center;">Login</h4> -->
-        </div>
+         </div>
         <div class="text-danger font-weight-bold" style="color: red; text-align: center;">
+        <ul>
           {% for error in errors %}
             <li>{{error}}</li>
           {% endfor %}
+        </ul>
+
       </div>
         <div class="mb-3">
           <label>Email<span class="required-field"></span></label>
@@ -100,7 +56,7 @@ body {
       </div>
 
         <button type="submit" class="button" onclick="validcap()">Login</button>
-        <h4>Captcha not visible <img src="{{ url_for('static', path='/img/refresh.png') }}" width= "20" onclick="createCaptcha()"></h4>
+        <h4>Captcha not visible <img src="{{ url_for('static', path='/img/refresh.png') }}" width= "20" alt = "refersh" onclick="createCaptcha()"></h4>
         <div class="form-group">
          Forgot Password? <a href="/forgotPassword">Click here</a>
         </div>  
@@ -116,21 +72,6 @@ body {
       function createCaptcha(){
         let value = btoa(Math.random()*1000000000)
         value = value.substr(0,5+Math.random()*5);
-// alert("value -" + value)
-//         const fonts = ["cursive","sans-serif","serif","monospace"];
-//        let html = value.split("").map((char) => {
-//           const rotate =-20 +Math.trunc(Math.random()*1000000000);
-//           const font = Math.trunc(Math.random()*fonts.length);
-          
-//           '<span style= "transform:rotate(${rotate}deg); font-family:${fonts[font]}"> ${char}</span>'
-          
-//         })
-//         alert(html)
-        //document.getElementById("capt").value=html;
-        // let captchaText = document.querySelector('.captcha');
-        
-
-        // captchaText.innerText = html;
         document.getElementById("capt").innerText=value;
 
       }
@@ -138,10 +79,8 @@ body {
                 var stg1 = document.getElementById('capt').innerText;
                 var stg2 = document.getElementById('textinput').value;
                 if(stg1==stg2){
-                  // alert("Form is validated Succesfully");
                   return true;
                 }else{
-                  // alert("Please enter a valid captcha");
                   document.getElementById("captValidate").innerText="Captcha not valid";
                   event.preventDefault();
                   return false;

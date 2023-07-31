@@ -1,13 +1,10 @@
-<html>
-    <title>Dashboard</title> <br>
-    <head> <link href="{{ url_for('static', path='/css/scm_style.css') }}" rel="stylesheet" />
-    <!-- <style>
-
-.topnav-right {
-  float: right;
-}
+<!DOCTYPE html>
+<html lang="en">
     
-        </style> -->
+    <head> 
+      <title>Dashboard</title>
+      <meta content="text/html; charset=utf-8" />
+      <link href="{{ url_for('static', path='/css/scm_style.css') }}" rel="stylesheet" />
         </head>
     <body class="stylebody">
 
@@ -18,22 +15,14 @@
           <div class="container"></div>
         <div class="row" style="float: left">
 
-          <img src="{{ url_for('static', path='/img/exf_logo.png') }}" style="background-color: white;" width= "30">
+          <img src="{{ url_for('static', path='/img/exf_logo.png') }}" alt="exf logo" style="background-color: white;" width= "30">
 </div>
-          <h1 class="display-5" style="text-align: center;color: rgb(67, 161, 223);"><span style="background-color: white ;">SCMXpertlite</span></h1>
-          <!-- <div class="container">
-            <div class="row">
-            <img src="{{ url_for('static', path='/img/exf_logo.png') }}" style="background-color: white;" width= "30">
-           <h1 class="display-5" style="text-align: center;color: blue;"> <span style="background-color: white;">Welcome {{userName}}</span></h1>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </div>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </div>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div> -->
+          <h1 class="display-5" style="text-align: center;padding-left: 200px; color: rgb(67, 161, 223);"><span style="background-color: white ;">SCMXpertlite</span></h1>
           <div class="row my-5">
           <form class="styleform">
             <h1 class="display-5" style="text-align: center;color: blue;"> <span>Welcome {{user['name']}}</span></h1>
-            <h3 class="display-5" style="text-align: center;color: rgb(2, 150, 63);"> Email - {{user['email']}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Role - {{user['role']}}</h3>
+            <h3 class="display-5" style="text-align: center;color: #054e23;"> Email - {{user['email']}}</h3>
+            <h3 class="display-5" style="text-align: center;color: #054e23;">Role - {{user['role']}}</h3>
             {% if shipment|length > 0 %}
             <h3 class="display-5" style="text-align: center;color: rgb(139, 0, 93);"> Shipments</h3>
               

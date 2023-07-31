@@ -1,8 +1,12 @@
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
-  <title>Sign Up </title>
-  <head> <link href="{{ url_for('static', path='/css/scm_style.css') }}" rel="stylesheet" />
+ 
+  <head>
+    <title>Register </title>
+    <meta content="text/html; charset=utf-8" />
+     <link href="{{ url_for('static', path='/css/scm_style.css') }}" rel="stylesheet" />
 
 
   </head>
@@ -10,7 +14,7 @@
   <div class="container">
     <div class="row">
       <div style="float: left;">
-        <img src="{{ url_for('static', path='/img/exf_logo.png') }}" width= "30" style="background-color: white;">
+        <img src="{{ url_for('static', path='/img/exf_logo.png') }}" alt="exf logo" width= "30" style="background-color: white;">
        
       </div>
       <h1 class="display-5" style="text-align: center;color: rgb(67, 161, 223);"><span style="background-color: white ;">SCMXpertlite</span></h1>
@@ -22,12 +26,13 @@
       <form method="POST" class="styleform">
         <div class="mb-3">
           <label style="display: block; text-align: center;margin-bottom: 10px;font-size: x-large;">Register</label>
-               <!-- <h4 class="display-5" style="text-align: center;">Login</h4> -->
         </div>
         <div class="text-danger font-weight-bold " style="color: red; text-align: center;">
+          <ul>
           {% for error in errors %}
             <li>{{error}}</li>
           {% endfor %}
+        </ul>
       </div>
         <div class="mb-3">
           <label>Username<span class="required-field"></span></label>
