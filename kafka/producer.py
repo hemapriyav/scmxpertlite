@@ -11,7 +11,7 @@ c.connect((SERVER,PORT))
 topic_name = "scm_data"
 producer = KafkaProducer(bootstrap_servers=['localhost:9092'],api_version=(0,11,5))
 count = 0
-while (count < 10):
+while (count < 15):
  print("inside while loop producer - "+ str(count))
  data = c.recv(1024)
  print(data)
