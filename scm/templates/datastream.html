@@ -7,6 +7,14 @@
       href="{{ url_for('static', path='/css/scm_style.css') }}"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"
+    ></script>
     <style>
       .topnav-right {
         float: right;
@@ -32,7 +40,7 @@
       }
     </style>
   </head>
-  <body class="stylebody">
+  <body class="stylebody" onload="pgtable()">
     <!-- <body> -->
     <div class="topnav-right">
       <a href="/dashboard">Home</a>
@@ -51,7 +59,7 @@
       <span style="background-color: white">SCMXpertlite</span>
     </h1>
 
-    <form class="form-control form-control-lg">
+    <form class="form-control form-control-lg" onload="pgtable()">
       <h1 class="display-5" style="text-align: center; color: darkmagenta">
         <span>DataStream</span>
       </h1>
@@ -148,7 +156,7 @@
         <!-- data stream-->
         {% if(deviceData|length > 0)%}
         <div>
-          <table class="data" style="width: 100%" ;>
+          <table class="data" id="devicetable" style="width: 100%" ;>
             <tr>
               <th class="data">Device Id</th>
               <th class="data">Battery Level</th>
@@ -189,5 +197,15 @@
         </div>
       </div>
     </form>
+    <script type="text/javascript">
+      function pgtable() {
+        alert("inside pgtable");
+        $("#devicetable").DataTable();
+      }
+      $(document).ready(function () {
+        alert("inside function");
+        $("#devicetable").DataTable();
+      });
+    </script>
   </body>
 </html>

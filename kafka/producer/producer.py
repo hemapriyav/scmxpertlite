@@ -3,13 +3,17 @@ from kafka import KafkaProducer
 from json import dumps
 
 PORT = 5050
-SERVER = socket.gethostbyname(socket.gethostname())
+# SERVER = socket.gethostbyname(socket.gethostname())
+SERVER = "scmxpertlite-server-1"
 print(SERVER)
 
 c = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 c.connect((SERVER,PORT))
 topic_name = "scm_data"
-producer = KafkaProducer(bootstrap_servers=['localhost:9092'],api_version=(0,11,5))
+boot_server = "kafka"
+producer = KafkaProducer(bootstrap_servers=boot_server,api_version=(0,11,5))
+# producer = KafkaProducer(bootstrap_servers=['localhost:9092'],api_version=(0,11,5))
+
 count = 0
 while (count < 15):
  print("inside while loop producer - "+ str(count))
