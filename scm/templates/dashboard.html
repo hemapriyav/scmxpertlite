@@ -7,6 +7,7 @@
       href="{{ url_for('static', path='/css/scm_style.css') }}"
       rel="stylesheet"
     />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   </head>
   <body class="stylebody">
     <div class="topnav-right">
@@ -46,24 +47,46 @@
         >
           Shipments
         </h3>
-
-        {% for shpment in shipment %}
         <div class="text sign-up-text">
-          <label
+          <table
+            class="data"
+            id="shiptable"
             style="
-              display: block;
-              text-align: center;
-              font-size: x-large;
-              background-color: antiquewhite;
+              background-color: white;
+              align-self: center;
+              margin-left: 50px;
             "
           >
-            <a href="/datastream/{{shpment['shipNum']}}" style="color: green">
-              # {{shpment['shipNum']}}</a
-            ></label
-          >
-        </div>
+            <thead>
+              <tr style="background-color: #0a789c">
+                <th class="data">Shipment Num</th>
+                <th class="data">Route</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for shpment in shipment %}
+              <tr>
+                <td class="data">
+                  <label>
+                    <a
+                      href="/datastream/{{shpment['shipNum']}}"
+                      style="color: rgb(235, 118, 9)"
+                    >
+                      {{shpment['shipNum']}}</a
+                    ></label
+                  >
+                </td>
 
-        {% endfor %} {% else %}
+                <td class="data">
+                  <label>{{shpment['route']}}</label>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% else %}
+
         <h3
           class="display-5"
           style="text-align: center; color: rgb(139, 0, 93)"
@@ -78,11 +101,11 @@
               display: block;
               text-align: center;
               font-size: large;
-              background-color: aqua;
+              background-color: rgb(191, 220, 248);
             "
           >
             <a href="/shipment" style="color: rgb(128, 0, 38)"
-              >Click here to Create New Shipment</a
+              >Create New Shipment</a
             ></label
           >
         </div>

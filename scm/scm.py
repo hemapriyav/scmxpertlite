@@ -2,7 +2,6 @@
 
 from fastapi import FastAPI, HTTPException
 from fastapi.templating import Jinja2Templates  
-# from fastapi import APIRouter
 from fastapi import Request, Response, Form
 from fastapi.staticfiles import StaticFiles
 
@@ -18,7 +17,6 @@ from routers.shipment import shipment_create,get_shipment,get_shipment_shipnum,g
 from routers.password import generate_auth_email,changepwd
 
 templates = Jinja2Templates(directory="templates")
-# router = APIRouter(include_in_schema=False) 
 
 app = FastAPI()  
 
