@@ -4,7 +4,8 @@ from json import dumps
 
 PORT = 5050
 # SERVER = socket.gethostbyname(socket.gethostname())
-SERVER = "scmxpertlite-server-1"
+# SERVER = "scmxpertlite-server-1"
+SERVER = "root-server-1"
 print(SERVER)
 
 c = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
