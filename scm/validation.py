@@ -3,6 +3,7 @@ import re
 
 regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
 
+### Validates the username,email and password entered in register page for correctness and returns list of error messages if any
 def credential_valid(username:str,email:str,password:str) -> list:
         errors = []
         global regex
@@ -14,6 +15,7 @@ def credential_valid(username:str,email:str,password:str) -> list:
             errors.append("Password must be minimum 5 chars")
         return errors
 
+### Validates the email entered in login page for correctness and returns error message if any
 def email_valid(email: str)->str|None:
     global regex
     if not (re.fullmatch(regex, email)):
