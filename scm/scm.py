@@ -91,9 +91,6 @@ def login_post(response: Response, request: Request, email: str = Form(...), pas
                 ### Calls sign_jwt to generate jwt token with the user's email id
                 token =sign_jwt(email)
 
-                ### Sets the token generated in cookies
-                # response.set_cookie(key="access_token", value = token, httponly=True)
-
                 ### Sets the loginuser global variable to the logged in user
                 global loginUser 
                 loginUser = user
@@ -103,7 +100,10 @@ def login_post(response: Response, request: Request, email: str = Form(...), pas
                
                 ### Renders the dashboard page with the shipment details
                 response = templates.TemplateResponse("/dashboard.html",{"request": request, "user": loginUser, "shipment": shipments})  
+                
+                ### Sets the token generated in cookies
                 response.set_cookie(key="access_token", value = token, httponly=True)
+                
                 return response
         
         ### Renders error message in case of invalid email/password
