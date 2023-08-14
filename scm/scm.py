@@ -16,6 +16,11 @@ from routers.login import login_valid,sign_jwt,decode_jwt
 from routers.shipment import shipment_create,get_shipment,get_shipment_shipnum,get_device_data
 from routers.password import generate_auth_email,changepwd
 
+# import os
+# from dotenv import load_dotenv
+
+# load_dotenv()
+
 templates = Jinja2Templates(directory="templates")
 
 app = FastAPI()  

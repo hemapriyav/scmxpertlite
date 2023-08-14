@@ -7,6 +7,10 @@ from fastapi import Request
 import time
 import jwt
 
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 def login_valid(email, password)->User|None:
     try:
         users = users_serializer(collection_name.find())
@@ -22,9 +26,12 @@ def sign_jwt(user_id: str) -> str:
     try:
         payload = {
             "user_id": user_id,
-            "expires": time.time() + 600
+            # "expires": time.time() + 600
+            "expires": time.time() + float(os.getenv('SESSION_EXPIRE_TIME'))
         }
-        token = jwt.encode(payload, "code", algorithm="HS256")
+        jwt_code = os.getenv('JWT_CODE')
+        jwt_algorithm = os.getenv('JWT_ALGORITHM')
+        token = jwt.encode(payload, jwt_code, algorithm= jwt_algorithm)  
         return token
     except Exception as error:
          raise HTTPException(status_code=404, detail= str(error))
@@ -35,7 +42,9 @@ def decode_jwt(request: Request,login_user: User) -> dict | None:
     print("access token from request-"+str(request.cookies.get("access_token")))
     try:
         token = request.cookies.get("access_token")
-        decoded_token = jwt.decode(token, "code", algorithms=["HS256"])
+        jwt_code = os.getenv('JWT_CODE')
+        jwt_algorithm = os.getenv('JWT_ALGORITHM')
+        decoded_token = jwt.decode(token, jwt_code, algorithms=[jwt_algorithm])
         print(decoded_token)
         
         print("before login user check-") 

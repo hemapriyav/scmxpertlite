@@ -9,6 +9,10 @@ from email.mime.text import MIMEText
 
 import random,string
 
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 def generate_auth_email(receiver_mail: str):
     try:
         passcode = ''.join(random.choices(string.ascii_uppercase + string.digits, k=5))
@@ -17,9 +21,11 @@ def generate_auth_email(receiver_mail: str):
         print("inside generate auth email")
         subject = "scmxpertlite password"
         body ="\nHi,\n\n Your Password is "+str(passcode)
-        sender_email="scmxpert1@gmail.com"
+        # sender_email="scmxpert1@gmail.com"
+        sender_email=os.getenv('SENDER_EMAIL')
         receiver_email = receiver_mail
-        password="mlyjkttmugfhcigo"
+        # password="mlyjkttmugfhcigo"
+        password=os.getenv('SENDER_EMAIL_PASSWORD')
 
         message = MIMEMultipart()
         message["From"] = sender_email
