@@ -46,7 +46,7 @@ def sign_jwt(user_id: str) -> str:
     
          
 ### Gets the token from cookies and decode it with jwt decode. Checks for expiry time and user id and returns value accordingly
-def decode_jwt(request: Request,login_user: User) -> dict | None:
+def decode_jwt(request: Request,login_user: User) -> bool:
     try:
         token = request.cookies.get("access_token")
         jwt_code = os.getenv('JWT_CODE')
@@ -55,9 +55,9 @@ def decode_jwt(request: Request,login_user: User) -> dict | None:
         decoded_token = jwt.decode(token, jwt_code, algorithms=[jwt_algorithm])
 
         if (decoded_token["expires"] >= time.time() and login_user["email"] == decoded_token["user_id"]): 
-            return decoded_token 
+            return True
         else:
-            return None
+            return False
         
     except Exception as error:
          raise HTTPException(status_code=404, detail= str(error))

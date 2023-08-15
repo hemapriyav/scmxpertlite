@@ -141,7 +141,7 @@ def shipment_get(request: Request):
         
         ### Calls decode_jwt to verify the session expiry time and renders message accordingly
         decoded_user =decode_jwt(request,loginUser)
-        if(decoded_user is None):
+        if (decoded_user is False):
             return templates.TemplateResponse(LOGOUT_PAGE,{"request": request,"message":MSG_SESSION_EXIPRED}) 
         
         ### Sets the minimum date for delivery date to be rendered in the page
@@ -166,7 +166,7 @@ async def shipment_post(request: Request):
         
         ### Calls decode_jwt to verify the session expiry time and renders message accordingly
         decoded_user =decode_jwt(request,loginUser)
-        if(decoded_user is None):
+        if (decoded_user is False):
             return templates.TemplateResponse(LOGOUT_PAGE,{"request": request,"message":MSG_SESSION_EXIPRED}) 
         
         ### Fetches the shipment details entered by user from the page and calls the shipment_create with the details
@@ -198,7 +198,7 @@ def datastream_get(request: Request,ship_num:int):
         
         ### Calls decode_jwt to verify the session expiry time and renders message accordingly
         decoded_user =decode_jwt(request,loginUser)
-        if(decoded_user is None):
+        if (decoded_user is False):
             return templates.TemplateResponse(LOGOUT_PAGE,{"request": request,"message":MSG_SESSION_EXIPRED})
         
         ### Calls get_shipment_shipnum and get_device_data to get the shipment and device data respectively
@@ -224,7 +224,7 @@ def dashboard_get(request: Request):
         
         ### Calls decode_jwt to verify the session expiry time and renders message accordingly 
         decoded_user =decode_jwt(request,loginUser)
-        if(decoded_user is None):
+        if (decoded_user is False):
             return templates.TemplateResponse(LOGOUT_PAGE,{"request": request,"message":MSG_SESSION_EXIPRED}) 
         
         ### Fetches the shipments for the user
@@ -275,7 +275,7 @@ def chg_pwd_get(request: Request):
         
         ### Calls decode_jwt to verify the session expiry time and renders message accordingly 
         decoded_user =decode_jwt(request,loginUser)
-        if(decoded_user is None):
+        if (decoded_user is False):
             return templates.TemplateResponse(LOGOUT_PAGE,{"request": request,"message":MSG_SESSION_EXIPRED}) 
         
         return templates.TemplateResponse(CHG_PWD_PAGE,{"request": request})  
@@ -295,7 +295,7 @@ def chg_pwd_post(request: Request,currentpwd: str = Form(...),newpwd:str = Form(
         
         ### Calls decode_jwt to verify the session expiry time and renders message accordingly
         decoded_user =decode_jwt(request,loginUser)
-        if(decoded_user is None):
+        if (decoded_user is False):
             return templates.TemplateResponse(LOGOUT_PAGE,{"request": request,"message":MSG_SESSION_EXIPRED}) 
         
         ### Checks if current password is same as login user password and current and new password are not same
