@@ -112,11 +112,13 @@
     </div>
   </body>
   <script type="text/javascript">
+    //Generates captcha and populates the respective field
     function createCaptcha() {
       let value = btoa(Math.random() * 1000000000);
       value = value.substr(0, 5 + Math.random() * 5);
       document.getElementById("capt").innerText = value;
     }
+    //Validates the entered captcha
     function validcap() {
       var stg1 = document.getElementById("capt").innerText;
       var stg2 = document.getElementById("textinput").value;

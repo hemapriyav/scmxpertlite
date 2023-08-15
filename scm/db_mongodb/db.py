@@ -16,6 +16,6 @@ database = os.getenv("DATABASE")
 db = client.get_database(database)
 
 ### Gets the required collections from the database
-collection_name = db[str(os.getenv("USER_COLLECTION"))]
-collection_name2 = db[str(os.getenv("SHIPMENT_COLLECTION"))]
-collection_name3 = db[str(os.getenv("DEVICE_DATA_COLLECTION"))]
+user_collection = db[str(os.getenv("USER_COLLECTION"))]
+shipment_collection = db[str(os.getenv("SHIPMENT_COLLECTION"))]
+device_data_collection = db[str(os.getenv("DEVICE_DATA_COLLECTION"))]

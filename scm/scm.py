@@ -76,7 +76,7 @@ def login_get(request: Request):
 ### Calls functions to check the correctness of credentials and to generate the jwt token for the login session.
 # Renders the dashboard with shipment details of the user
 @app.post("/login/")
-def login_post(response: Response, request: Request, email: str = Form(...), password: str = Form(...)):
+def login_post(request: Request, email: str = Form(...), password: str = Form(...)):
     try:
         ### Calls email_valid to validate the correctness of the mail id and renders error messages if any
         error = email_valid(email)
@@ -88,6 +88,7 @@ def login_post(response: Response, request: Request, email: str = Form(...), pas
         ### Calls login_valid to check the email and password present in db and gets the respective user.Renders error messages if any
         user = login_valid(email,password)
         if(user is not None):
+                response: Response
                 ### Calls sign_jwt to generate jwt token with the user's email id
                 token =sign_jwt(email)
 
@@ -99,6 +100,7 @@ def login_post(response: Response, request: Request, email: str = Form(...), pas
                 shipments = get_shipment(loginUser)
                
                 ### Renders the dashboard page with the shipment details
+                
                 response = templates.TemplateResponse("/dashboard.html",{"request": request, "user": loginUser, "shipment": shipments})  
                 
                 ### Sets the token generated in cookies

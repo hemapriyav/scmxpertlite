@@ -1,7 +1,7 @@
 
 from fastapi import HTTPException
 
-from db_mongodb.db import collection_name
+from db_mongodb.db import user_collection
 
 import smtplib, ssl
 from email.mime.multipart import MIMEMultipart
@@ -47,6 +47,6 @@ def generate_auth_email(receiver_mail: str):
     
 ### Updates the password in DB for the given mail id     
 def changepwd(email: str,password:str):
-    collection_name.find_one_and_update( { 'email': email}, { '$set': { 'password': password} } ) 
+    user_collection.find_one_and_update( { 'email': email}, { '$set': { 'password': password} } ) 
 
     

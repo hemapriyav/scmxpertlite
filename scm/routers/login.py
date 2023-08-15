@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi import Request
 
 from db_mongodb.schema import  users_serializer
-from db_mongodb.db import collection_name
+from db_mongodb.db import user_collection
 from db_mongodb.model import User
 
 import time
@@ -17,7 +17,7 @@ load_dotenv()
 ### Checks for users in the DB with the given email amd password and returns the user if found
 def login_valid(email, password)->User|None:
     try:
-        users = users_serializer(collection_name.find())
+        users = users_serializer(user_collection.find())
         for user in users:
             if user['email'] == email and user['password'] == password:
                 return user
